@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     public float xCameraInput, yCameraInput;
     public bool runInput;
     public bool crouchInput;
-    public bool slideInput;
+    public bool boostInput;
     public bool jumpInput;
     public bool kickInput;
 
@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
 
            _input.Player.Jump.performed += i => jumpInput = true;
 
-           _input.Player.Slide.performed += i => slideInput = true;
+           _input.Player.Slide.performed += i => boostInput = true;
 
            _input.Player.Kick.performed += i => kickInput = true;
 
@@ -90,7 +90,7 @@ public class InputManager : MonoBehaviour
     private void ResetInput()
     {
         jumpInput = false;
-        slideInput = false;
+        boostInput = false;
         kickInput = false;
         // interactInput = false;
         // quick1Input = false;

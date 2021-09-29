@@ -24,14 +24,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Run")]
     [SerializeField] private float _runSpeed;
 
-    [Header("Slide")]
-    [SerializeField] private float _slideForce;
-    [SerializeField] private float _slideLength;
-    [SerializeField] private float _crouchHeight;
-    private float _normalHeight;
-    private Transform _normalGroundCheck;
-    private Vector3 _slideDirection;
-    private float _slideTimer;
+    [Header("Boost")]
+    [SerializeField] private float _boostForce;
+    [SerializeField] private float _boostLength;
+    private Vector3 _boostDirection;
+    private float _boostTimer;
     
     [Header("Jump")]
     public int jumpAmount;
@@ -74,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
         // _animator = _player.animator;
 
         _moveSpeed = _walkSpeed + speedStat;
-        _normalHeight = _controller.height;
-        _normalGroundCheck = _groundCheck;
 
         _jumpHeight = _jumpHeightBase;
 
@@ -107,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             // CheckDirection();
             CheckJump();
             CheckRun();
-            CheckSlide();
+            CheckBoost();
             
             if(canHeadbob)
                 Headbob();
@@ -115,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             EndRun();
-            EndSlide();
+            EndBoost();
         }
     }
 
@@ -161,19 +156,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Headbob()
     {
-        if(!_player.isGrounded)
-        {
-            _cam.transform.position = this.transform.position;
-        }
-        else if(h != 0 || v != 0)
+        if(h != 0 || v != 0 && _player.isGrounded && !_player.isBoosting)
         {
             bobTimer += Time.deltaTime * (_player.isRunning ? (headbobSpeed + 7.5f) : headbobSpeed);
 
             _cam.transform.localPosition = new Vector3(
                 this.transform.localPosition.x,
-                defaultYPos + Mathf.Sin(bobTimer) * (_player.isRunning ? (headbobAmount + 0.6f) : headbobAmount),
+                this.transform.position.y + Mathf.Sin(bobTimer) * (_player.isRunning ? (headbobAmount + 0.6f) : headbobAmount),
                 this.transform.localPosition.z);
-        }
+        } 
+        else 
+            _cam.transform.position = this.transform.position;
     }
 
     // private void CheckDirection()
@@ -249,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_input.runInput)
         {
-            if(v != 0 && !_player.isSliding && !_player.isGrappling)
+            if(v != 0 && !_player.isBoosting && !_player.isGrappling)
                 StartRun();
                 
             if(v == 0)
@@ -274,56 +267,45 @@ public class PlayerMovement : MonoBehaviour
         _moveSpeed = _walkSpeed + speedStat;
         // _animator.NotRunning();
 
-        if(!_player.isSliding && !_player.isGrappling)
+        if(!_player.isBoosting && !_player.isGrappling)
             _cam.ChangeFov(_cam.originalFov);
     }
     #endregion
 
 
 
-    #region Slide
-    private void CheckSlide()
+    #region Boost
+    private void CheckBoost()
     {
-        if(_input.slideInput && !_player.isSliding && _player.isRunning)
-            StartSlide();
-        else if(_slideTimer >= _slideLength)
-            EndSlide();
+        if(_input.boostInput && !_player.isBoosting && _player.isRunning)
+            StartBoost();
+        else if(_boostTimer >= _boostLength)
+            EndBoost();
             
-        if(_player.isSliding)
-            _slideTimer += Time.deltaTime;
-    }
-    private void StartSlide() 
-    {
-        _input.runInput = false;
-        _controller.height = _crouchHeight;
-        // _animator.Sliding();
-        _cam.ChangeFov(_cam.originalFov + 15f); 
-        
-        _moveSpeed = _runSpeed + speedStat;
-        _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
-        Invoke(nameof(SlideForce), 0.15f);
-    }
-    private void SlideForce()
-    {
-        _player.isSliding = true;
-        _slideDirection = transform.forward;
-        _velocity = _slideDirection * _slideForce;
+        if(_player.isBoosting)
+            _boostTimer += Time.deltaTime;
     }
 
-    private void EndSlide()
+    private void StartBoost() 
+    {
+        _player.isBoosting = true;
+        _input.runInput = false;
+        _cam.ChangeFov(_cam.originalFov + 15f); 
+        AddMomentum(transform.right * h + transform.forward * v, _boostForce);
+    }
+
+    private void EndBoost()
     {
         if(!_player.isGrappling)
             _cam.ChangeFov(_cam.originalFov);
-        Invoke(nameof(ResetSlide), 0.25f);
+        Invoke(nameof(ResetBoost), 0.25f);
     }
-    private void ResetSlide()
+    private void ResetBoost()
     {
-        _player.isSliding = false;
+        _player.isBoosting = false;
         _moveSpeed = _walkSpeed + speedStat;
-        _controller.height = _normalHeight;
         _velocity = _initialVelocity;
-        // _animator.NotSliding();
-        _slideTimer = 0;
+        _boostTimer = 0;
     }
     #endregion
 

@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public bool isGrounded;
     public bool isRunning;
     public bool isCrouching;
-    public bool isSliding;
+    public bool isBoosting;
     public bool isGrappling;
     [Space]
     public bool canMove;
