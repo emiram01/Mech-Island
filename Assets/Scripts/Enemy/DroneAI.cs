@@ -48,39 +48,36 @@ public class DroneAI : MonoBehaviour
         float randomX = Random.Range(-_nextPosRange, _nextPosRange);
         float randomZ = Random.Range(-_nextPosRange, _nextPosRange);
 
-        _nextPos = new Vector3(this.transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        _nextPos = new Vector3(this.transform.position.x + randomX, this.transform.position.y, this.transform.position.z + randomZ);
 
-        if(Physics.Raycast(_nextPos, -transform.up, 2f, _groundLayer))
+        NavMeshHit hit;
+        if(NavMesh.SamplePosition(_nextPos, out hit, 25f, NavMesh.AllAreas))
             _nextPosSet = true;
     }
     
     private void Idle()
     {
-        print("i");
         if(!_nextPosSet)
             SearchNextPosition();
 
         if(_nextPosSet)
             _agent.SetDestination(_nextPos);
            
-
         Vector3 distanceToNextPos = this.transform.position - _nextPos;
 
         if(distanceToNextPos.magnitude < 1f)
-            _nextPosSet = false;
+            _nextPosSet = false;      
     }
 
     private void Follow()
     {
-        print("f");
+        this.transform.LookAt(_player.transform);
         _agent.SetDestination(_player.transform.position);
     }
 
     private void Attack()
     {
-        print("a");
-        _agent.SetDestination(this.transform.position);
-        transform.LookAt(_player.transform);
+        Follow();
 
         if(!_attacked)
         {

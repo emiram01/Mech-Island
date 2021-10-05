@@ -289,7 +289,6 @@ public class PlayerMovement : MonoBehaviour
     private void StartBoost() 
     {
         _player.isBoosting = true;
-        _input.runInput = false;
         _cam.ChangeFov(_cam.originalFov + 15f); 
         AddMomentum(transform.right * h + transform.forward * v, _boostForce);
     }

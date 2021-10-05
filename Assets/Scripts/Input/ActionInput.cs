@@ -67,7 +67,7 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""RightHand"",
+                    ""name"": ""LeftMouse"",
                     ""type"": ""Button"",
                     ""id"": ""280e1553-d83c-418e-8764-62a7789e9c65"",
                     ""expectedControlType"": ""Button"",
@@ -75,7 +75,7 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""LeftHand"",
+                    ""name"": ""RightMouse"",
                     ""type"": ""Button"",
                     ""id"": ""6cde51a9-75d1-4d32-ba38-578c987b0470"",
                     ""expectedControlType"": ""Button"",
@@ -86,14 +86,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""name"": ""Kick"",
                     ""type"": ""Button"",
                     ""id"": ""98bd0927-fb48-4026-b45a-ea8c5e520ef8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Inventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""f2a971bd-c4c6-4d28-9428-014d2a438706"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -229,18 +221,7 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""RightHand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""452b79f5-0362-470c-b3ce-499b5e1b3a02"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Inventory"",
+                    ""action"": ""LeftMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -383,7 +364,7 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""LeftHand"",
+                    ""action"": ""RightMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -417,10 +398,9 @@ public class @ActionInput : IInputActionCollection, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_RightHand = m_Player.FindAction("RightHand", throwIfNotFound: true);
-        m_Player_LeftHand = m_Player.FindAction("LeftHand", throwIfNotFound: true);
+        m_Player_LeftMouse = m_Player.FindAction("LeftMouse", throwIfNotFound: true);
+        m_Player_RightMouse = m_Player.FindAction("RightMouse", throwIfNotFound: true);
         m_Player_Kick = m_Player.FindAction("Kick", throwIfNotFound: true);
-        m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Quick1 = m_Player.FindAction("Quick1", throwIfNotFound: true);
         m_Player_Quick2 = m_Player.FindAction("Quick2", throwIfNotFound: true);
@@ -483,10 +463,9 @@ public class @ActionInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Slide;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_RightHand;
-    private readonly InputAction m_Player_LeftHand;
+    private readonly InputAction m_Player_LeftMouse;
+    private readonly InputAction m_Player_RightMouse;
     private readonly InputAction m_Player_Kick;
-    private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Quick1;
     private readonly InputAction m_Player_Quick2;
@@ -504,10 +483,9 @@ public class @ActionInput : IInputActionCollection, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Slide => m_Wrapper.m_Player_Slide;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @RightHand => m_Wrapper.m_Player_RightHand;
-        public InputAction @LeftHand => m_Wrapper.m_Player_LeftHand;
+        public InputAction @LeftMouse => m_Wrapper.m_Player_LeftMouse;
+        public InputAction @RightMouse => m_Wrapper.m_Player_RightMouse;
         public InputAction @Kick => m_Wrapper.m_Player_Kick;
-        public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Quick1 => m_Wrapper.m_Player_Quick1;
         public InputAction @Quick2 => m_Wrapper.m_Player_Quick2;
@@ -542,18 +520,15 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @RightHand.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHand;
-                @RightHand.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHand;
-                @RightHand.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHand;
-                @LeftHand.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHand;
-                @LeftHand.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHand;
-                @LeftHand.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHand;
+                @LeftMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouse;
+                @LeftMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouse;
+                @LeftMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouse;
+                @RightMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouse;
+                @RightMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouse;
+                @RightMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouse;
                 @Kick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKick;
                 @Kick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKick;
                 @Kick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKick;
-                @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
-                @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
-                @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
@@ -597,18 +572,15 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @RightHand.started += instance.OnRightHand;
-                @RightHand.performed += instance.OnRightHand;
-                @RightHand.canceled += instance.OnRightHand;
-                @LeftHand.started += instance.OnLeftHand;
-                @LeftHand.performed += instance.OnLeftHand;
-                @LeftHand.canceled += instance.OnLeftHand;
+                @LeftMouse.started += instance.OnLeftMouse;
+                @LeftMouse.performed += instance.OnLeftMouse;
+                @LeftMouse.canceled += instance.OnLeftMouse;
+                @RightMouse.started += instance.OnRightMouse;
+                @RightMouse.performed += instance.OnRightMouse;
+                @RightMouse.canceled += instance.OnRightMouse;
                 @Kick.started += instance.OnKick;
                 @Kick.performed += instance.OnKick;
                 @Kick.canceled += instance.OnKick;
-                @Inventory.started += instance.OnInventory;
-                @Inventory.performed += instance.OnInventory;
-                @Inventory.canceled += instance.OnInventory;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -651,10 +623,9 @@ public class @ActionInput : IInputActionCollection, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnRightHand(InputAction.CallbackContext context);
-        void OnLeftHand(InputAction.CallbackContext context);
+        void OnLeftMouse(InputAction.CallbackContext context);
+        void OnRightMouse(InputAction.CallbackContext context);
         void OnKick(InputAction.CallbackContext context);
-        void OnInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnQuick1(InputAction.CallbackContext context);
         void OnQuick2(InputAction.CallbackContext context);

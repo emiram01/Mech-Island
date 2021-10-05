@@ -54,7 +54,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RightHand",
+                    "name": "LeftMouse",
                     "type": "Button",
                     "id": "280e1553-d83c-418e-8764-62a7789e9c65",
                     "expectedControlType": "Button",
@@ -62,7 +62,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "LeftHand",
+                    "name": "RightMouse",
                     "type": "Button",
                     "id": "6cde51a9-75d1-4d32-ba38-578c987b0470",
                     "expectedControlType": "Button",
@@ -73,14 +73,6 @@
                     "name": "Kick",
                     "type": "Button",
                     "id": "98bd0927-fb48-4026-b45a-ea8c5e520ef8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "f2a971bd-c4c6-4d28-9428-014d2a438706",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -216,18 +208,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "RightHand",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "452b79f5-0362-470c-b3ce-499b5e1b3a02",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Inventory",
+                    "action": "LeftMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -370,7 +351,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "LeftHand",
+                    "action": "RightMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

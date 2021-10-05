@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
     public bool boostInput;
     public bool jumpInput;
     public bool kickInput;
+    public bool rightMouseInput;
+    public bool leftMouseInput;
 
     // public bool quick1Input;
     // public bool quick2Input;
@@ -45,6 +47,10 @@ public class InputManager : MonoBehaviour
            _input.Player.Slide.performed += i => boostInput = true;
 
            _input.Player.Kick.performed += i => kickInput = true;
+
+           _input.Player.RightMouse.performed += i => rightMouseInput = true;
+
+           _input.Player.LeftMouse.performed += i => leftMouseInput = true;
 
         //    _input.Player.Interact.performed += i => interactInput = true;
 
@@ -92,6 +98,8 @@ public class InputManager : MonoBehaviour
         jumpInput = false;
         boostInput = false;
         kickInput = false;
+        rightMouseInput = false;
+        leftMouseInput = false;
         // interactInput = false;
         // quick1Input = false;
         // quick2Input = false;
