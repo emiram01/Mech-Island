@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController _controller;
     private InputManager _input;
     private CameraManager _cam;
-    // private PlayerAnimator _animator;
 
     [Header("Player Settings")]
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private LayerMask _hurtLayer;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private float _groundDistance;
     [SerializeField] private float _gravity;
@@ -68,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _input = _player.input;
         _cam = _player.cam;
-        // _animator = _player.animator;
 
         _moveSpeed = _walkSpeed + speedStat;
 
@@ -88,6 +87,17 @@ public class PlayerMovement : MonoBehaviour
         
         if(_player.isGrounded && _velocity.y < 0)
             _velocity.y = -2f;
+
+        if(Physics.CheckSphere(_groundCheck.position, _groundDistance, _hurtLayer))
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(_groundCheck.position, _groundDistance);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                Instantiate(_player.explosionPrefab, _groundCheck.transform);
+                Destroy(hitCollider.gameObject);
+            }
+        }
     }
 
     #region General Movement
@@ -99,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
         if(_player.canMove)
         {
             Move();
-            // CheckDirection();
             CheckJump();
             CheckRun();
             CheckBoost();
@@ -168,29 +177,6 @@ public class PlayerMovement : MonoBehaviour
         else 
             _cam.transform.position = this.transform.position;
     }
-
-    // private void CheckDirection()
-    // {
-    //     // if(v == 1)
-    //     // {
-    //     //     _animator.WalkingForward();
-    //     // }
-    //     // else if(v == -1)
-    //     // {
-    //     //     _animator.WalkingBack();
-    //     // }
-    //     // else if(h == -1)
-    //     // {
-    //     //     _animator.WalkingLeft();
-    //     // }
-    //     // else if(h == 1)
-    //     // {
-    //     //     _animator.WalkingRight();
-    //     // }
-
-    //     // if(h == 0 && v == 0)
-    //         // _animator.Idle();
-    // }
     #endregion
 
     #region Jump
@@ -224,8 +210,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(_jumpCount >= 1)
             _jumpHeight = _jumpHeightBase + 0.5f;
-
-        // _animator.SetJumpCount(_jumpCount);
     }
 
     private void ResetGroundCheck() => _jumping = false;
@@ -256,7 +240,6 @@ public class PlayerMovement : MonoBehaviour
     {
             _player.isRunning = true;
             _moveSpeed = _runSpeed + speedStat;
-            // _animator.Running();
             _cam.ChangeFov(_cam.originalFov + 10f);
     }
 
@@ -265,7 +248,6 @@ public class PlayerMovement : MonoBehaviour
         _input.runInput = false;
         _player.isRunning = false;
         _moveSpeed = _walkSpeed + speedStat;
-        // _animator.NotRunning();
 
         if(!_player.isBoosting && !_player.isGrappling)
             _cam.ChangeFov(_cam.originalFov);

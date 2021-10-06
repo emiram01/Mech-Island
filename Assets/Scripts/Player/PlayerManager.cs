@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     public Sway sway;
     [Space]
     public PlayerMovement movement;
+    public PlayerAttack attack;
+    public GameObject explosionPrefab;
     [Space]
     public Stats health;
     public Stats energy; 
@@ -19,17 +21,12 @@ public class PlayerManager : MonoBehaviour
     public bool isGrappling;
     [Space]
     public bool canMove;
-    // public bool canUseQuick;
-    // public bool canAttack;
-    // public bool canKick;
-    // public bool changedPower;
+    public int currentAttack;
 
     private void Start()
     {
         canMove = true;
-        // canUseQuick = true;
-        // canAttack = true;
-        // canKick = true;
+        currentAttack = 1;
     }
 
     private void Update()
@@ -39,12 +36,8 @@ public class PlayerManager : MonoBehaviour
 
     private void PlayerState()
     {
-        // if(isGrounded)
-        //     animator.Grounded();
-        // else
-        //     animator.NotGrounded();
-
         movement.CheckCollision();
         movement.CheckMovementInput();
+        attack.CheckAttack();
     }
 }

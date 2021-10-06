@@ -19,12 +19,6 @@ public class InputManager : MonoBehaviour
     public bool rightMouseInput;
     public bool leftMouseInput;
 
-    // public bool quick1Input;
-    // public bool quick2Input;
-    // public bool quick3Input;
-    // public bool quick4Input;
-    // public bool interactInput;
-
     public bool testInput;
 
     private void OnEnable()
@@ -49,15 +43,10 @@ public class InputManager : MonoBehaviour
            _input.Player.Kick.performed += i => kickInput = true;
 
            _input.Player.RightMouse.performed += i => rightMouseInput = true;
+           _input.Player.RightMouse.canceled += i => rightMouseInput = false;
 
            _input.Player.LeftMouse.performed += i => leftMouseInput = true;
-
-        //    _input.Player.Interact.performed += i => interactInput = true;
-
-        //    _input.Player.Quick1.performed += i => quick1Input = true;
-        //    _input.Player.Quick2.performed += i => quick2Input = true;    
-        //    _input.Player.Quick3.performed += i => quick3Input = true;
-        //    _input.Player.Quick4.performed += i => quick4Input = true;
+           _input.Player.LeftMouse.canceled += i => leftMouseInput = false;
 
            _input.Player.TEST.performed += i => testInput = true;
         }
@@ -98,13 +87,8 @@ public class InputManager : MonoBehaviour
         jumpInput = false;
         boostInput = false;
         kickInput = false;
-        rightMouseInput = false;
-        leftMouseInput = false;
-        // interactInput = false;
-        // quick1Input = false;
-        // quick2Input = false;
-        // quick3Input = false;
-        // quick4Input = false;
+        // rightMouseInput = false;
+        // leftMouseInput = false;
         testInput = false;
     }
 }
