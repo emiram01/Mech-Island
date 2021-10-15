@@ -1,37 +1,68 @@
 using UnityEngine;
 
-public class CarAi : MonoBehaviour
+public class CarAI : MonoBehaviour
 {
+    public bool canMove;
     [SerializeField] private Transform[] waypoints;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float turnSpeed;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _turnSpeed;
 
-    private int waypointIndex;
+    [Header("Health")]
+    [SerializeField] private int _health;
+
+    private MeshRenderer _mesh;
+    private int _waypointIndex;
 
     private void Start()
     {
-        this.transform.position = waypoints[waypointIndex].transform.position;
+        if(canMove)
+        {
+            this.transform.position = waypoints[_waypointIndex].transform.position;
+            _mesh = this.GetComponentInChildren<MeshRenderer>();
+        }
+
+        _mesh = this.GetComponent<MeshRenderer>();
     }
 
     private void Update()
     {
-        MoveCar();
-        TurnCar();
+        if(canMove)
+        {
+            MoveCar();
+            TurnCar();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+
+        if(_health <= 70)
+            canMove = false;
+
+        if(_health <= 0)
+        {
+            this.enabled = false;
+            if(_mesh)
+                _mesh.enabled = false;
+            
+            GetComponentInChildren<Explode>().Boom();
+        }
     }
 
     private void MoveCar()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
-        if(transform.position == waypoints[waypointIndex].transform.position)
-            waypointIndex++;
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[_waypointIndex].transform.position, _moveSpeed * Time.deltaTime);
+        if(transform.position == waypoints[_waypointIndex].transform.position)
+            _waypointIndex++;
 
-        if(waypointIndex == waypoints.Length)
-            waypointIndex = 0;
+        if(_waypointIndex == waypoints.Length)
+            _waypointIndex = 0;
     }
 
     private void TurnCar()
     {
-        Quaternion rot = Quaternion.LookRotation(waypoints[waypointIndex].position - this.transform.position);
-        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rot, turnSpeed * Time.deltaTime);
+        Quaternion rot = Quaternion.LookRotation(waypoints[_waypointIndex].position - this.transform.position);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rot, _turnSpeed * Time.deltaTime);
     }
 }

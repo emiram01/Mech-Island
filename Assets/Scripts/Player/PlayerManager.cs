@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         canMove = true;
-        currentAttack = 1;
+        currentAttack = 2;
     }
 
     private void Update()

@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 case 2:
                     _homingLauncher.Shoot();
+                    _input.leftMouseInput = false;  
                     break;
                 default:
                     break;

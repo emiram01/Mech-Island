@@ -6,7 +6,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private LayerMask _groundLayer, _playerLayer;
-    private PlayerManager playerManager; 
+    private PlayerManager _playerManager; 
+    private MeshRenderer _mesh;
+    private SkinnedMeshRenderer _skinnedMesh;
     
     [Header("Movement")]
     [SerializeField] private Vector3 _nextPos;
@@ -29,7 +31,9 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         _player = GameObject.Find("Player");
-        playerManager = _player.GetComponent<PlayerManager>();
+        _playerManager = _player.GetComponent<PlayerManager>();
+        _mesh = this.GetComponentInChildren<MeshRenderer>();
+        _skinnedMesh = this.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     private void Update()
@@ -42,7 +46,15 @@ public class EnemyAI : MonoBehaviour
         _health -= damage;
 
         if(_health <= 0)
+        {
+            this.enabled = false;
+            if(_skinnedMesh)
+                _skinnedMesh.enabled = false;
+            else if(_mesh)
+                _mesh.enabled = false;
+
             GetComponent<Explode>().Boom();
+        }
     }
 
     private void CheckRange()
@@ -101,7 +113,6 @@ public class EnemyAI : MonoBehaviour
             Idle();
         }
             
-
         if(!_attacked)
         {
             _attacked = true;

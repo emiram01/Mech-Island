@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Physics.CheckSphere(_groundCheck.position, _groundDistance, _hurtLayer))
         {
-            Collider[] hitColliders = Physics.OverlapSphere(_groundCheck.position, _groundDistance);
+            Collider[] hitColliders = Physics.OverlapSphere(_groundCheck.position, _groundDistance, _hurtLayer);
 
             foreach (var hitCollider in hitColliders)
             {
