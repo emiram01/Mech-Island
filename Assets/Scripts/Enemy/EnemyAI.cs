@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour
             else if(_mesh)
                 _mesh.enabled = false;
 
-            GetComponent<Explode>().Boom();
+            GetComponent<Explode>().Boom(new Vector3(2f, 2f, 2f), 10, 8, 2);
         }
     }
 

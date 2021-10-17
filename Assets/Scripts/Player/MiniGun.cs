@@ -47,7 +47,8 @@ public class MiniGun : MonoBehaviour
 
             if(Physics.Raycast(_cam.transform.position, _cam.transform.forward, out _hit, _range))
             {
-                
+                if(_hit.transform.tag == "GasPump")
+                    _hit.transform.GetComponent<Explode>().Boom(new Vector3(4f, 4f, 4f), 20, 8, 5);
 
                 EnemyAI enemy = _hit.transform.GetComponent<EnemyAI>();
 

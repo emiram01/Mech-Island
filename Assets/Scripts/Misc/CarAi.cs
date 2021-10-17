@@ -46,7 +46,7 @@ public class CarAI : MonoBehaviour
             if(_mesh)
                 _mesh.enabled = false;
             
-            GetComponentInChildren<Explode>().Boom();
+            GetComponentInChildren<Explode>().Boom(new Vector3(3f, 3f, 3f), 15, 10, 3);
         }
     }
 
