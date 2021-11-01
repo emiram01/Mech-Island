@@ -43,22 +43,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""15884b06-7e00-46e3-a5a7-5707f2009081"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Slide"",
-                    ""type"": ""Button"",
-                    ""id"": ""dce3b04b-c6e0-4135-931a-c3723efca522"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""ad1fc981-676d-418e-9e2d-991fc2687033"",
@@ -271,28 +255,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2a6e97b1-31f6-4fd5-bb93-43d65274dbd6"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dda5347d-c4da-4f8d-8e99-65c4feb823d6"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Slide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8f43f39a-083d-4f3d-a0a6-99b221a52981"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -395,8 +357,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_LeftMouse = m_Player.FindAction("LeftMouse", throwIfNotFound: true);
         m_Player_RightMouse = m_Player.FindAction("RightMouse", throwIfNotFound: true);
@@ -460,8 +420,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Camera;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_Crouch;
-    private readonly InputAction m_Player_Slide;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_LeftMouse;
     private readonly InputAction m_Player_RightMouse;
@@ -480,8 +438,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-        public InputAction @Slide => m_Wrapper.m_Player_Slide;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @LeftMouse => m_Wrapper.m_Player_LeftMouse;
         public InputAction @RightMouse => m_Wrapper.m_Player_RightMouse;
@@ -511,12 +467,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Slide.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlide;
-                @Slide.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlide;
-                @Slide.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlide;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -563,12 +513,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
-                @Slide.started += instance.OnSlide;
-                @Slide.performed += instance.OnSlide;
-                @Slide.canceled += instance.OnSlide;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -620,8 +564,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnSlide(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLeftMouse(InputAction.CallbackContext context);
         void OnRightMouse(InputAction.CallbackContext context);

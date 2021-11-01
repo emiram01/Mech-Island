@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour
     public bool isGrappling;
     [Space]
     public bool canMove;
+    public bool boostActive;
+    public bool grappleActive;
     public int currentAttack;
 
     private void Start()

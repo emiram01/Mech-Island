@@ -30,22 +30,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "15884b06-7e00-46e3-a5a7-5707f2009081",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Slide",
-                    "type": "Button",
-                    "id": "dce3b04b-c6e0-4135-931a-c3723efca522",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "ad1fc981-676d-418e-9e2d-991fc2687033",
@@ -253,28 +237,6 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2a6e97b1-31f6-4fd5-bb93-43d65274dbd6",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dda5347d-c4da-4f8d-8e99-65c4feb823d6",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Slide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

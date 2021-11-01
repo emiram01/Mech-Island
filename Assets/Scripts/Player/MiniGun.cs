@@ -11,6 +11,8 @@ public class MiniGun : MonoBehaviour
     [SerializeField] private Transform _leftBulletSpawn;
     [SerializeField] private Transform _rightBulletSpawn;
     [SerializeField] private GameObject _bullets;
+    [SerializeField] private GameObject _bulletHolePrefab;
+    [SerializeField] private float _bulletHoleTimer;
     private CameraManager _cam;
     private float _nextFire;
     private RaycastHit _hit;
@@ -61,6 +63,10 @@ public class MiniGun : MonoBehaviour
 
                 if(car)
                     car.TakeDamage(_damage);
+
+                GameObject bulletHole = Instantiate(_bulletHolePrefab, _hit.point, Quaternion.LookRotation(-_hit.normal));
+                bulletHole.transform.SetParent(_hit.transform);
+                Destroy(bulletHole, _bulletHoleTimer);
             }
         }
     }

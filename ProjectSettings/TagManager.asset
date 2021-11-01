@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rocket
   - GasPump
+  - Enemy
   layers:
   - Default
   - TransparentFX

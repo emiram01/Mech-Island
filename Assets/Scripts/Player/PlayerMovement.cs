@@ -88,13 +88,15 @@ public class PlayerMovement : MonoBehaviour
         if(_player.isGrounded && _velocity.y < 0)
             _velocity.y = -2f;
 
+        _controller.stepOffset = _player.isGrounded ? 2 : 0;
+
         if(Physics.CheckSphere(_groundCheck.position, _groundDistance, _hurtLayer))
         {
             Collider[] hitColliders = Physics.OverlapSphere(_groundCheck.position, _groundDistance, _hurtLayer);
 
             foreach (var hitCollider in hitColliders)
             {
-                Instantiate(_player.explosionPrefab, _groundCheck.transform);
+                Instantiate(_player.explosionPrefab, _groundCheck.transform).transform.parent = null;
                 Destroy(hitCollider.gameObject);
             }
         }
@@ -111,7 +113,9 @@ public class PlayerMovement : MonoBehaviour
             Move();
             CheckJump();
             CheckRun();
-            CheckBoost();
+
+            if(_player.boostActive)
+                CheckBoost();
             
             if(canHeadbob)
                 Headbob();
@@ -259,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
     #region Boost
     private void CheckBoost()
     {
-        if(_input.boostInput && !_player.isBoosting && _player.isRunning)
+        if(_input.rightMouseInput && !_player.isBoosting && (h != 0 || v != 0))
             StartBoost();
         else if(_boostTimer >= _boostLength)
             EndBoost();
@@ -277,8 +281,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void EndBoost()
     {
-        if(!_player.isGrappling)
-            _cam.ChangeFov(_cam.originalFov);
+        // if(!_player.isGrappling)
+        //     _cam.ChangeFov(_cam.originalFov);
         Invoke(nameof(ResetBoost), 0.25f);
     }
     private void ResetBoost()

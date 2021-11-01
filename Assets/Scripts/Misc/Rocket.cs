@@ -23,7 +23,8 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Explode();
+        if(collision.gameObject.tag != "Rocket")
+            Explode();
 
         foreach(ContactPoint contact in collision.contacts)
         {
@@ -44,8 +45,6 @@ public class Rocket : MonoBehaviour
 
             if(car)
                 car.TakeDamage(25);
-
-            
 
             return;
         }

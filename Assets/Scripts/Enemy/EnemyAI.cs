@@ -6,6 +6,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private LayerMask _groundLayer, _playerLayer;
+    [SerializeField] private Material[] _materials;
+
     private PlayerManager _playerManager; 
     private MeshRenderer _mesh;
     private SkinnedMeshRenderer _skinnedMesh;
@@ -27,13 +29,22 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private int _health;
-
+    
     private void Awake()
     {
         _player = GameObject.Find("Player");
         _playerManager = _player.GetComponent<PlayerManager>();
         _mesh = this.GetComponentInChildren<MeshRenderer>();
         _skinnedMesh = this.GetComponentInChildren<SkinnedMeshRenderer>();
+    }
+
+    private void Start()
+    {   
+        if(_mesh)
+            _mesh.material = _materials[Random.Range(0, _materials.Length)];
+        
+        if(_skinnedMesh)
+            _skinnedMesh.material = _materials[Random.Range(0, _materials.Length)];
     }
 
     private void Update()
