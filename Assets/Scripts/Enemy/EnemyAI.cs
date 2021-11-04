@@ -34,8 +34,8 @@ public class EnemyAI : MonoBehaviour
     {
         _player = GameObject.Find("Player");
         _playerManager = _player.GetComponent<PlayerManager>();
-        _mesh = this.GetComponentInChildren<MeshRenderer>();
-        _skinnedMesh = this.GetComponentInChildren<SkinnedMeshRenderer>();
+        _mesh = this.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
+        _skinnedMesh = this.transform.GetChild(1).gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     private void Start()

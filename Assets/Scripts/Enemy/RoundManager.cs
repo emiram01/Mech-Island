@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 [System.Serializable]
 
-public class Wave
+public class Round
 {
-    public string waveName;
+    public string round;
     public int totalEnemies;
     public GameObject[] enemyTypes;
     public float spawnInterval;
@@ -11,43 +11,48 @@ public class Wave
 
 public class RoundManager : MonoBehaviour
 {
-    [SerializeField] private Wave[] _wave;
+    [SerializeField] private Round[] _rounds;
 
     [Header("Spawn Points")]
     [SerializeField] private Transform[] _droneSpawnPoints;
     [SerializeField] private Transform[] _tinySpawnPoints;
-    [SerializeField] private Transform _bossSpawnPoint;
+    [SerializeField] private Transform[] _bossSpawnPoints;
 
-    private Wave _currentWave;
-    private int _currentWaveNum;
+    private Round _currentRound;
+    private int _currentRoundNum;
     private bool _canSpawn;
     private float _nextSpawnTime;
 
     private void Start()
     {
-        _currentWaveNum = 0;
+        _currentRoundNum = 0;
         _canSpawn = true;
     }
 
     private void Update()
     {
-        _currentWave = _wave[_currentWaveNum];
-        SpawnWave();
+        _currentRound = _rounds[_currentRoundNum];
+        SpawnEnemies();
 
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if(currentEnemies.Length == 0 && !_canSpawn)
+        if(currentEnemies.Length == 0 && !_canSpawn && _currentRoundNum + 1 != _rounds.Length)
         {
-            _currentWaveNum++;
-            _canSpawn = true;
+            StartNextRound();
         }
     }
 
-    private void SpawnWave()
+    private void StartNextRound()
+    {
+        _currentRoundNum++;
+        _canSpawn = true;
+    }
+
+    private void SpawnEnemies()
     {
         if(_canSpawn && _nextSpawnTime < Time.time)
         {
-            int enemyType = Random.Range(0, _currentWave.enemyTypes.Length);
-            GameObject enemy = _currentWave.enemyTypes[enemyType];
+            int enemyType = Random.Range(0, _currentRound.enemyTypes.Length);
+            GameObject enemy = _currentRound.enemyTypes[enemyType];
             Transform spawn;
 
             switch(enemyType)
@@ -67,18 +72,17 @@ public class RoundManager : MonoBehaviour
             if(spawn && enemy)
             {
                 Instantiate(enemy, spawn.position, Quaternion.identity);
-                _currentWave.totalEnemies--;
-                _nextSpawnTime = Time.time + _currentWave.spawnInterval;
+                _currentRound.totalEnemies--;
+                _nextSpawnTime = Time.time + _currentRound.spawnInterval;
             }
 
-            if(_currentWave.totalEnemies == 0)
+            if(_currentRound.totalEnemies == 0)
                 _canSpawn = false;
 
-            // if(_currentWaveNum == 5)
+            // if(_currentRoundNum == 5)
             // {
             //     //spawn boss
             // }
         }
-
     }
 }

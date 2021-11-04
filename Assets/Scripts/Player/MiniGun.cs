@@ -64,9 +64,9 @@ public class MiniGun : MonoBehaviour
                 if(car)
                     car.TakeDamage(_damage);
 
-                GameObject bulletHole = Instantiate(_bulletHolePrefab, _hit.point, Quaternion.LookRotation(-_hit.normal));
-                bulletHole.transform.SetParent(_hit.transform);
-                Destroy(bulletHole, _bulletHoleTimer);
+                // GameObject bulletHole = Instantiate(_bulletHolePrefab, _hit.point, Quaternion.LookRotation(-_hit.normal));
+                // bulletHole.transform.SetParent(_hit.transform);
+                // Destroy(bulletHole, _bulletHoleTimer);
             }
         }
     }
