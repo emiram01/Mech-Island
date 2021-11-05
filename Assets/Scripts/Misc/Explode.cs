@@ -16,7 +16,7 @@ public class Explode : MonoBehaviour
 
         if(!_exploded)
         {
-            Invoke(nameof(Explosion), 0.25f);
+            Invoke(nameof(Explosion), 0f);
             GameObject explosion = Instantiate(_explosionPrefab, this.transform) as GameObject;
             explosion.transform.localScale = size;
             explosion.transform.GetChild(0).localScale = size;

@@ -11,7 +11,9 @@ public class Round
 
 public class RoundManager : MonoBehaviour
 {
+    [SerializeField] Animator _animator;
     [SerializeField] private Round[] _rounds;
+    [SerializeField] private RoundCounter _counter;
 
     [Header("Spawn Points")]
     [SerializeField] private Transform[] _droneSpawnPoints;
@@ -21,12 +23,15 @@ public class RoundManager : MonoBehaviour
     private Round _currentRound;
     private int _currentRoundNum;
     private bool _canSpawn;
+    private bool _canAnimate;
     private float _nextSpawnTime;
 
     private void Start()
     {
         _currentRoundNum = 0;
         _canSpawn = true;
+
+        _counter.UpdateRoundCounter(_currentRoundNum);
     }
 
     private void Update()
@@ -35,16 +40,24 @@ public class RoundManager : MonoBehaviour
         SpawnEnemies();
 
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if(currentEnemies.Length == 0 && !_canSpawn && _currentRoundNum + 1 != _rounds.Length)
+
+        if(currentEnemies.Length == 0 && _canAnimate && _currentRoundNum + 1 != _rounds.Length)
         {
-            StartNextRound();
+            _animator.SetTrigger("RoundComplete");
+            _canAnimate = false;
         }
+            
+
+        if(_counter.canStart)
+            StartNextRound();
     }
 
     private void StartNextRound()
     {
         _currentRoundNum++;
         _canSpawn = true;
+        _counter.canStart = false;
+        _counter.UpdateRoundCounter(_currentRoundNum);
     }
 
     private void SpawnEnemies()
@@ -77,7 +90,10 @@ public class RoundManager : MonoBehaviour
             }
 
             if(_currentRound.totalEnemies == 0)
+            {
                 _canSpawn = false;
+                _canAnimate = true;
+            }
 
             // if(_currentRoundNum == 5)
             // {

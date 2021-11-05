@@ -40,11 +40,11 @@ public class PlayerMovement : MonoBehaviour
     private bool _jumping;
 
     [Header("Headbob")]
-    [SerializeField] private float headbobSpeed;
-    [SerializeField] private float headbobAmount;
-    private float defaultYPos;
-    private float bobTimer;
-    private bool canHeadbob;
+    [SerializeField] private float _headbobSpeed;
+    [SerializeField] private float _headbobAmount;
+    private float _initialYPos;
+    private float _bobTimer;
+    private bool _canHeadbob;
 
     // [Header("Wall Run")]
     // [SerializeField] private float _wallDistance;
@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity;
     private Vector3 _initialVelocity;
     private Vector3 _currentMomentum;
+    private float _initialGD;
+    private float _boostGD;
     private float h, v;
 
     private void Start()
@@ -75,9 +77,18 @@ public class PlayerMovement : MonoBehaviour
 
         _initialVelocity = _velocity;
 
-        defaultYPos = this.transform.localPosition.y;
+        _initialYPos = this.transform.localPosition.y;
 
-        canHeadbob = true;
+        _initialGD = _groundDistance;
+        _boostGD = _groundDistance + 2.25f;
+
+        _canHeadbob = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(_groundCheck.position, _groundDistance);
     }
  
     public void CheckCollision()
@@ -117,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             if(_player.boostActive)
                 CheckBoost();
             
-            if(canHeadbob)
+            if(_canHeadbob)
                 Headbob();
         }
         else
@@ -171,11 +182,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if((h != 0 || v != 0) && _player.isGrounded && !_player.isBoosting)
         {
-            bobTimer += Time.deltaTime * (_player.isRunning ? (headbobSpeed + 7.5f) : headbobSpeed);
+            _bobTimer += Time.deltaTime * (_player.isRunning ? (_headbobSpeed + 7.5f) : _headbobSpeed);
 
             _cam.transform.localPosition = new Vector3(
                 this.transform.localPosition.x,
-                this.transform.position.y + Mathf.Sin(bobTimer) * (_player.isRunning ? (headbobAmount + 0.6f) : headbobAmount),
+                this.transform.position.y + Mathf.Sin(_bobTimer) * (_player.isRunning ? (_headbobAmount + 0.6f) : _headbobAmount),
                 this.transform.localPosition.z);
         } 
         else 
@@ -275,17 +286,18 @@ public class PlayerMovement : MonoBehaviour
     private void StartBoost() 
     {
         _player.isBoosting = true;
-        _cam.ChangeFov(_cam.originalFov + 15f); 
+        _cam.ChangeFov(_cam.originalFov + 15f);
         AddMomentum(transform.right * h + transform.forward * v, _boostForce);
+        _groundDistance = _boostGD;
+        Invoke(nameof(ResetGroundDistance), 0.15f);
+    }
+
+    private void ResetGroundDistance()
+    {
+        _groundDistance = _initialGD;
     }
 
     private void EndBoost()
-    {
-        // if(!_player.isGrappling)
-        //     _cam.ChangeFov(_cam.originalFov);
-        Invoke(nameof(ResetBoost), 0.25f);
-    }
-    private void ResetBoost()
     {
         _player.isBoosting = false;
         _moveSpeed = _walkSpeed + speedStat;
