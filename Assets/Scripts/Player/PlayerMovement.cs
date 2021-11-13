@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _headbobAmount;
     private float _initialYPos;
     private float _bobTimer;
-    private bool _canHeadbob;
+    [SerializeField]private bool _canHeadbob;
 
     // [Header("Wall Run")]
     // [SerializeField] private float _wallDistance;
@@ -94,7 +94,11 @@ public class PlayerMovement : MonoBehaviour
     public void CheckCollision()
     {
         if(!_jumping)
+        {
             _player.isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundLayer);
+            CheckSlope();
+        }
+            
         
         if(_player.isGrounded && _velocity.y < 0)
             _velocity.y = -2f;
@@ -110,6 +114,17 @@ public class PlayerMovement : MonoBehaviour
                 Instantiate(_player.explosionPrefab, _groundCheck.transform).transform.parent = null;
                 Destroy(hitCollider.gameObject);
             }
+        }
+    }
+
+    private void CheckSlope()
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, _controller.height / 2 * 1.5f))
+        {
+            if(Vector3.Angle(hit.normal, Vector3.up) > 0.1f)
+                _controller.Move(Vector3.down * _controller.height / 2 * Time.deltaTime);
         }
     }
 
@@ -198,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
     public void AddMomentum(Vector3 dir, float boost)
     {
         _currentMomentum = dir * boost;
-        _cam.ChangeFov(_cam.originalFov + boost);
+        // _cam.ChangeFov(_cam.originalFov + boost);
     }
     
     public void BoostUp()

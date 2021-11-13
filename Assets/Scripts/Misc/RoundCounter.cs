@@ -12,7 +12,7 @@ public class RoundCounter : MonoBehaviour
     void Start()
     {
         for(int i = 0; i < _positions.Length; i++)
-            _positions[i].sprite = _digits[0];
+            _positions[i].sprite = _digits[10];
     }
 
     public void UpdateRoundCounter(int currentRound)
@@ -24,13 +24,13 @@ public class RoundCounter : MonoBehaviour
         {
             case 1:
                 _rt.localPosition = new Vector2(-320, -160);
-                _positions[0].sprite = _digits[0];
-                _positions[1].sprite = _digits[0];
+                _positions[0].sprite = _digits[10];
+                _positions[1].sprite = _digits[10];
                 _positions[2].sprite = _digits[digitArray[0]];
                 break;
             case 2:
                 _rt.localPosition = new Vector2(-300, -160);
-                _positions[0].sprite = _digits[0];
+                _positions[0].sprite = _digits[10];
                 _positions[1].sprite = _digits[digitArray[0]];
                 _positions[2].sprite = _digits[digitArray[1]];
                 break;

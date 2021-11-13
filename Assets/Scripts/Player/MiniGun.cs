@@ -30,7 +30,10 @@ public class MiniGun : MonoBehaviour
             Rigidbody rb = _hit.transform.GetComponent<Rigidbody>();
             Vector3 dir = _cam.transform.forward;
             rb.AddForce(dir, ForceMode.Impulse);
-            rb.isKinematic = false;
+
+            if(!_hit.transform.GetComponentInParent<CarAI>())
+                rb.isKinematic = false;
+
             _shooting = false;
         }   
     }

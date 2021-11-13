@@ -38,8 +38,13 @@ public class CarAI : MonoBehaviour
         _health -= damage;
 
         if(_health <= 70)
+        {
             canMove = false;
-
+            Rigidbody rb = this.GetComponentInChildren<Rigidbody>();
+            if(rb)
+                rb.isKinematic = false;
+        }
+            
         if(_health <= 0)
         {
             this.enabled = false;

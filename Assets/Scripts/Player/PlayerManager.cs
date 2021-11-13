@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     public bool canMove;
     public bool boostActive;
     public bool grappleActive;
+    public bool wallHackActive;
     public int currentAttack;
 
     private void Start()

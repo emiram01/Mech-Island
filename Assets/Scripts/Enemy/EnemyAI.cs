@@ -11,6 +11,8 @@ public class EnemyAI : MonoBehaviour
     private PlayerManager _playerManager; 
     private MeshRenderer _mesh;
     private SkinnedMeshRenderer _skinnedMesh;
+    private Outline _outline;
+    private bool _changedOutlineV;
     
     [Header("Movement")]
     [SerializeField] private Vector3 _nextPos;
@@ -20,6 +22,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private bool _inSightRange;
     [SerializeField] private float _stopRange;
     [SerializeField] private bool _inStopRange;
+    private Vector3 _lastCheckPos;
+    private float _lastCheckTime;
+    
 
     [Header("Attack")]
     [SerializeField] private float _attackTime;
@@ -36,6 +41,7 @@ public class EnemyAI : MonoBehaviour
         _playerManager = _player.GetComponent<PlayerManager>();
         _mesh = this.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
         _skinnedMesh = this.transform.GetChild(1).gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        _outline = GetComponentInChildren<Outline>();
     }
 
     private void Start()
@@ -50,6 +56,12 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         CheckRange();
+
+        if(!_changedOutlineV && _playerManager.wallHackActive)
+        {
+            _outline.OutlineMode = Outline.Mode.OutlineAll;
+            _changedOutlineV  = true;
+        }
     }  
 
     public void TakeDamage(int damage)
@@ -106,6 +118,15 @@ public class EnemyAI : MonoBehaviour
 
         if(distanceToNextPos.magnitude < 1f)
             _nextPosSet = false;      
+
+        if ((Time.time - _lastCheckTime) > 0.5f)
+        {
+            if((this.transform.position - _lastCheckPos).magnitude < 0.1f)
+                SearchNextPosition();
+
+            _lastCheckPos = this.transform.position;
+            _lastCheckTime = Time.time;
+        }
     }
 
     private void Follow()
