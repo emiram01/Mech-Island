@@ -186,6 +186,36 @@ Transform:
   m_Father: {fileID: 8785586447356178525}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -11.633153, y: 87.98552, z: -128.01141}
+--- !u!1 &700567194490915674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6325766476067350713}
+  m_Layer: 11
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6325766476067350713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700567194490915674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.97, z: 1.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7484191288654291045}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1245610060346732294
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +517,36 @@ Transform:
   m_Father: {fileID: 7484191288654291045}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5718325622907012428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5171063990004425617}
+  m_Layer: 11
+  m_Name: Bullet Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5171063990004425617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5718325622907012428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.038, y: 3.183, z: 3.211}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7484191288654291045}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6114510086703622536
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +705,8 @@ Transform:
   - {fileID: 3860743919964206156}
   - {fileID: 1160537257319763638}
   - {fileID: 3465701639413015230}
+  - {fileID: 6325766476067350713}
+  - {fileID: 5171063990004425617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -677,7 +739,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.31
-  m_Speed: 8
+  m_Speed: 16
   m_Acceleration: 11
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -701,6 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c5b2cf1e584fe478f9e947aa49aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 700567194490915674}
   _player: {fileID: 0}
   _agent: {fileID: 7824688785974606557}
   _groundLayer:
@@ -716,14 +779,17 @@ MonoBehaviour:
   _nextPos: {x: 0, y: 0, z: 0}
   _nextPosSet: 0
   _nextPosRange: 25
-  _sightRange: 100
+  _sightRange: 245
   _inSightRange: 0
   _stopRange: 25
   _inStopRange: 0
-  _attackTime: 0.5
+  _attackTime: 1.5
   _attacked: 0
-  _attackRange: 70
+  _attackRange: 135
   _inAttackRange: 0
+  _bullet: {fileID: 5878894759841489672, guid: 7068018a8c4f11e47a6bd24cca447925, type: 3}
+  _bulletSpawns:
+  - {fileID: 5171063990004425617}
   _health: 100
 --- !u!114 &7824688785974606555
 MonoBehaviour:

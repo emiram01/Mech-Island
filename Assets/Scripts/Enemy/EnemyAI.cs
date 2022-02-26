@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    public GameObject target;
     [SerializeField] private GameObject _player;
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private LayerMask _groundLayer, _playerLayer;
@@ -31,13 +32,15 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private bool _attacked;
     [SerializeField] private float _attackRange;
     [SerializeField] private bool _inAttackRange;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Transform[] _bulletSpawns;
 
     [Header("Health")]
     [SerializeField] private int _health;
     
     private void Awake()
     {
-        _player = GameObject.Find("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
         _playerManager = _player.GetComponent<PlayerManager>();
         _mesh = this.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
         _skinnedMesh = this.transform.GetChild(1).gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -147,6 +150,9 @@ public class EnemyAI : MonoBehaviour
             
         if(!_attacked)
         {
+            foreach(Transform spawn in _bulletSpawns)
+                Instantiate(_bullet, spawn);
+
             _attacked = true;
             Invoke(nameof(ResetAttack), _attackTime);
         }

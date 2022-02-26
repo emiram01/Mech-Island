@@ -18,7 +18,8 @@ public class HomingLauncher : MonoBehaviour
     {
         if(Physics.Raycast(_player.cam.transform.position, _player.cam.transform.forward, out _hit, _range))
         {
-            _target = _hit.transform.gameObject;
+            
+            _target = _hit.transform.GetComponent<EnemyAI>() ? _hit.transform.GetComponent<EnemyAI>().target : _hit.transform.gameObject;
             if(_target.layer == 9 || _target.layer == 12)
                 _target = null;
         }
