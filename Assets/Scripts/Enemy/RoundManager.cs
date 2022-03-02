@@ -18,7 +18,7 @@ public class RoundManager : MonoBehaviour
     [Header("Spawn Points")]
     [SerializeField] private Transform[] _droneSpawnPoints;
     [SerializeField] private Transform[] _tinySpawnPoints;
-    [SerializeField] private Transform[] _bossSpawnPoints;
+    [SerializeField] private Transform[] _crawlerSpawnPoints;
 
     private Round _currentRound;
     private int _currentRoundNum;
@@ -76,6 +76,9 @@ public class RoundManager : MonoBehaviour
                 case 1:
                     spawn = _droneSpawnPoints[Random.Range(0, _droneSpawnPoints.Length)];
                     break;
+                case 2:
+                    spawn = _crawlerSpawnPoints[Random.Range(0, _crawlerSpawnPoints.Length)];
+                    break;
                 default:
                     spawn = null;
                     print("enemy type oob");
@@ -94,11 +97,6 @@ public class RoundManager : MonoBehaviour
                 _canSpawn = false;
                 _canAnimate = true;
             }
-
-            // if(_currentRoundNum == 5)
-            // {
-            //     //spawn boss
-            // }
         }
     }
 }
