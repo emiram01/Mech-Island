@@ -3,7 +3,7 @@ using UnityEngine;
 public class MiniGun : MonoBehaviour
 {
     [SerializeField] private PlayerManager _player;
-    [SerializeField] private int _damage;
+    [SerializeField] private float _damage;
     [SerializeField] private float _fireRate;
     [SerializeField] private float _range;
     [SerializeField] private Transform _leftGun;
@@ -65,7 +65,10 @@ public class MiniGun : MonoBehaviour
                     enemy.TakeDamage(_damage);
 
                 if(car)
-                    car.TakeDamage(_damage);
+                    car.TakeDamage((int) _damage);
+
+                if(_hit.transform.tag == "Rocket")
+                    _hit.transform.GetComponent<Explode>().Boom(new Vector3(0.3f, 0.3f, 0.3f), 1, 1, 2);
 
                 // GameObject bulletHole = Instantiate(_bulletHolePrefab, _hit.point, Quaternion.LookRotation(-_hit.normal));
                 // bulletHole.transform.SetParent(_hit.transform);

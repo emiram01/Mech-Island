@@ -10,8 +10,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerAttack attack;
     public GameObject explosionPrefab;
     [Space]
-    public Stats health;
-    public Stats energy; 
+    public Health health;
 
     [Header("Player States")]
     public bool isGrounded;
@@ -22,7 +21,6 @@ public class PlayerManager : MonoBehaviour
     [Space]
     public bool canMove;
     public bool boostActive;
-    public bool grappleActive;
     public bool wallHackActive;
     public int currentAttack;
 
@@ -41,5 +39,34 @@ public class PlayerManager : MonoBehaviour
         movement.CheckCollision();
         movement.CheckMovementInput();
         attack.CheckAttack();
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.GetComponent<Pickup>())
+        {
+            int item = collider.GetComponent<Pickup>().itemID;
+
+            switch(item)
+            {
+                case 1:
+                    currentAttack = 2;
+                    attack.canChange = true;
+                    break;
+                case 2:
+                    movement.jumpAmount = 3;
+                    break;
+                case 3:
+                    health.curr += 10;
+                    break;
+                case 4:
+                    wallHackActive = true;
+                    break;
+                default:
+                    break;
+            }
+
+            Destroy(collider.gameObject);
+        }
     }
 }

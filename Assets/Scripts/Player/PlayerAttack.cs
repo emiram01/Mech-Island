@@ -4,6 +4,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private PlayerManager _player;
     [SerializeField] private CharacterController _controller;
+    public bool canChange;
     private InputManager _input;
 
     [Header("Weapons")]
@@ -19,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _input = _player.input;
         _lastAttack = _player.currentAttack;
-        _currentModels = _launcherModels;
+        _currentModels = _miniGunModels;
     }
 
     public void CheckAttack()
@@ -44,6 +45,14 @@ public class PlayerAttack : MonoBehaviour
         {
             ChangeAttack();
             _lastAttack = _player.currentAttack;
+        }
+
+        if(canChange)
+        {
+            if(_input.numOne)
+                _player.currentAttack = 1;
+            if(_input.numTwo)
+                _player.currentAttack = 2;
         }
     }
 

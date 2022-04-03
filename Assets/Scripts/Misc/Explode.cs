@@ -42,6 +42,8 @@ public class Explode : MonoBehaviour
             EnemyAI enemy = hitCollider.transform.GetComponent<EnemyAI>();
 
             CarAI car = hitCollider.transform.GetComponent<CarAI>();
+
+            Health health = hitCollider.transform.GetComponent<Health>();
             if(!car)
                 car = hitCollider.transform.GetComponentInParent<CarAI>();
 
@@ -53,6 +55,9 @@ public class Explode : MonoBehaviour
                 car.TakeDamage(10);
                 car.canMove = false;
             }
+
+            if(health)
+                health.TakeDamage(7);
 
             if(hitCollider.tag == "GasPump")
             {

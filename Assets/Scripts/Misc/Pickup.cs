@@ -2,6 +2,7 @@
 
 public class Pickup : MonoBehaviour
 {
+    public int itemID;
     [SerializeField] private Vector3 _rotation;
     [SerializeField] private float _rotSpeed;
     [SerializeField] private float _posSpeed;

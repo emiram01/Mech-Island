@@ -34,9 +34,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private bool _inAttackRange;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform[] _bulletSpawns;
+    [SerializeField] bool _isCrawler;
 
     [Header("Health")]
-    [SerializeField] private int _health;
+    [SerializeField] private float _health;
     
     private void Awake()
     {
@@ -67,13 +68,15 @@ public class EnemyAI : MonoBehaviour
         }
     }  
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _health -= damage;
 
         if(_health <= 0)
         {
             this.enabled = false;
+            _agent.ResetPath();
+            _agent.isStopped = true;
             if(_skinnedMesh)
                 _skinnedMesh.enabled = false;
             else if(_mesh)
@@ -94,7 +97,14 @@ public class EnemyAI : MonoBehaviour
         if(_inSightRange && !_inAttackRange)
             Follow();
         if(_inSightRange && _inAttackRange)
-            Attack();
+        {
+            if(_isCrawler)
+                TakeDamage(_health);
+            else
+                Attack();
+
+        }
+            
     }
 
     private void SearchNextPosition()
@@ -139,7 +149,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     private void Attack()
-    {
+    {            
         if(!_inStopRange)
             Follow();
         else

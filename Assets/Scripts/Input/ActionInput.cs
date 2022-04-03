@@ -67,54 +67,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Kick"",
-                    ""type"": ""Button"",
-                    ""id"": ""98bd0927-fb48-4026-b45a-ea8c5e520ef8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""c0b88dd2-eb29-43b0-a00a-51895e910f38"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Quick1"",
-                    ""type"": ""Button"",
-                    ""id"": ""483aff5f-ccd9-4b85-b111-cf5934a44e75"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Quick2"",
-                    ""type"": ""Button"",
-                    ""id"": ""c0e68ff6-f1cb-4192-b82d-5a8da60e8ab1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Quick3"",
-                    ""type"": ""Button"",
-                    ""id"": ""5506d9ca-285e-4fc3-94d9-5b91e3b3f3aa"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Quick4"",
-                    ""type"": ""Button"",
-                    ""id"": ""ea4bc287-87e8-4e56-8c13-64ca5a4224e6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""ba2d8ca8-6cdf-47a1-856b-86a04eaa2cf0"",
@@ -126,6 +78,22 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""name"": ""TEST"",
                     ""type"": ""Button"",
                     ""id"": ""5befc741-2d19-4e49-98fc-21bb0b282bac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""NumOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""70dadddb-c869-4a76-ae63-872807e084d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""NumTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""302f3fa1-f3ae-4380-9ae3-bd6d13917d3e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -186,17 +154,6 @@ public class @ActionInput : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""458d3bf5-df4e-4767-b9e0-58cdd869b2c3"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Kick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -266,67 +223,34 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d7c169ea-8807-48c0-8ec3-b4dd4312fbd9"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dcddf0ee-27ce-4cbe-8acd-51b4b4aac0e5"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Quick1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""870de4e6-56a1-4819-81b8-2c172795657a"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Quick2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8a6cad82-7a40-4da8-a2ff-8798a180c0aa"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Quick3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ea2ab250-b960-47d7-9230-9e05403ce949"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Quick4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""644075d9-8694-43df-8ffb-4d85e05b23fd"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""RightMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27b82e17-67ba-4d73-95dc-55ee2fed274b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NumOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c889faec-c07b-478c-8ea6-02493120069a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NumTwo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -360,14 +284,10 @@ public class @ActionInput : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_LeftMouse = m_Player.FindAction("LeftMouse", throwIfNotFound: true);
         m_Player_RightMouse = m_Player.FindAction("RightMouse", throwIfNotFound: true);
-        m_Player_Kick = m_Player.FindAction("Kick", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Quick1 = m_Player.FindAction("Quick1", throwIfNotFound: true);
-        m_Player_Quick2 = m_Player.FindAction("Quick2", throwIfNotFound: true);
-        m_Player_Quick3 = m_Player.FindAction("Quick3", throwIfNotFound: true);
-        m_Player_Quick4 = m_Player.FindAction("Quick4", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_TEST = m_Player.FindAction("TEST", throwIfNotFound: true);
+        m_Player_NumOne = m_Player.FindAction("NumOne", throwIfNotFound: true);
+        m_Player_NumTwo = m_Player.FindAction("NumTwo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -423,14 +343,10 @@ public class @ActionInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_LeftMouse;
     private readonly InputAction m_Player_RightMouse;
-    private readonly InputAction m_Player_Kick;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Quick1;
-    private readonly InputAction m_Player_Quick2;
-    private readonly InputAction m_Player_Quick3;
-    private readonly InputAction m_Player_Quick4;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_TEST;
+    private readonly InputAction m_Player_NumOne;
+    private readonly InputAction m_Player_NumTwo;
     public struct PlayerActions
     {
         private @ActionInput m_Wrapper;
@@ -441,14 +357,10 @@ public class @ActionInput : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @LeftMouse => m_Wrapper.m_Player_LeftMouse;
         public InputAction @RightMouse => m_Wrapper.m_Player_RightMouse;
-        public InputAction @Kick => m_Wrapper.m_Player_Kick;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Quick1 => m_Wrapper.m_Player_Quick1;
-        public InputAction @Quick2 => m_Wrapper.m_Player_Quick2;
-        public InputAction @Quick3 => m_Wrapper.m_Player_Quick3;
-        public InputAction @Quick4 => m_Wrapper.m_Player_Quick4;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @TEST => m_Wrapper.m_Player_TEST;
+        public InputAction @NumOne => m_Wrapper.m_Player_NumOne;
+        public InputAction @NumTwo => m_Wrapper.m_Player_NumTwo;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -476,30 +388,18 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 @RightMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouse;
                 @RightMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouse;
                 @RightMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouse;
-                @Kick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKick;
-                @Kick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKick;
-                @Kick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKick;
-                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Quick1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick1;
-                @Quick1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick1;
-                @Quick1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick1;
-                @Quick2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick2;
-                @Quick2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick2;
-                @Quick2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick2;
-                @Quick3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick3;
-                @Quick3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick3;
-                @Quick3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick3;
-                @Quick4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick4;
-                @Quick4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick4;
-                @Quick4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuick4;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @TEST.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTEST;
                 @TEST.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTEST;
                 @TEST.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTEST;
+                @NumOne.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNumOne;
+                @NumOne.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNumOne;
+                @NumOne.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNumOne;
+                @NumTwo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNumTwo;
+                @NumTwo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNumTwo;
+                @NumTwo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNumTwo;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -522,30 +422,18 @@ public class @ActionInput : IInputActionCollection, IDisposable
                 @RightMouse.started += instance.OnRightMouse;
                 @RightMouse.performed += instance.OnRightMouse;
                 @RightMouse.canceled += instance.OnRightMouse;
-                @Kick.started += instance.OnKick;
-                @Kick.performed += instance.OnKick;
-                @Kick.canceled += instance.OnKick;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @Quick1.started += instance.OnQuick1;
-                @Quick1.performed += instance.OnQuick1;
-                @Quick1.canceled += instance.OnQuick1;
-                @Quick2.started += instance.OnQuick2;
-                @Quick2.performed += instance.OnQuick2;
-                @Quick2.canceled += instance.OnQuick2;
-                @Quick3.started += instance.OnQuick3;
-                @Quick3.performed += instance.OnQuick3;
-                @Quick3.canceled += instance.OnQuick3;
-                @Quick4.started += instance.OnQuick4;
-                @Quick4.performed += instance.OnQuick4;
-                @Quick4.canceled += instance.OnQuick4;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
                 @TEST.started += instance.OnTEST;
                 @TEST.performed += instance.OnTEST;
                 @TEST.canceled += instance.OnTEST;
+                @NumOne.started += instance.OnNumOne;
+                @NumOne.performed += instance.OnNumOne;
+                @NumOne.canceled += instance.OnNumOne;
+                @NumTwo.started += instance.OnNumTwo;
+                @NumTwo.performed += instance.OnNumTwo;
+                @NumTwo.canceled += instance.OnNumTwo;
             }
         }
     }
@@ -567,13 +455,9 @@ public class @ActionInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLeftMouse(InputAction.CallbackContext context);
         void OnRightMouse(InputAction.CallbackContext context);
-        void OnKick(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnQuick1(InputAction.CallbackContext context);
-        void OnQuick2(InputAction.CallbackContext context);
-        void OnQuick3(InputAction.CallbackContext context);
-        void OnQuick4(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnTEST(InputAction.CallbackContext context);
+        void OnNumOne(InputAction.CallbackContext context);
+        void OnNumTwo(InputAction.CallbackContext context);
     }
 }
