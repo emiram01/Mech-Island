@@ -5,7 +5,7 @@
 Mech Island is a mech-inspired first person shooter where the player must survive as many rounds of enemies as possible.
 
 Made for MechJam 2 but decided to spend more time on it to add more mechanics. Built using [Unity2D](https://unity.com/) and C#. 
-Most Models and animations were made by me using [Blender](https://www.blender.org/). 
+Most models and animations were made by me using [Blender](https://www.blender.org/). 
 Other models downloaded from [CGtrader](https://www.cgtrader.com/).
 
 
